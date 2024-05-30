@@ -1,0 +1,38 @@
+.card:hover{
+    transform: scale(1.02);
+    box-shadow: 0 4px 4px gray, 0 4px 4px gray;
+}
+
+.bi:active{
+    transform: scale(1.2);
+}
+
+#like_button:active{
+    transform: scale(1.5);
+    background-color: aqua;
+}
+
+.navbar-brand{
+    font-family: "kalam", "sans-serif";
+    transform: scale(2.5);
+    transform: translateY(4);
+    transform-origin: 1px;
+}
+
+.kalam-light {
+    font-family: "Kalam", cursive;
+    font-weight: 300;
+    font-style: normal;
+  }
+  
+.kalam-regular {
+font-family: "Kalam", cursive;
+font-weight: 400;
+font-style: normal;
+}
+  
+.kalam-bold {
+font-family: "Kalam", cursive;
+font-weight: 700;
+font-style: normal;
+}

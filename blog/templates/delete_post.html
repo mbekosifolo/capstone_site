@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block title %}Delete Article{% endblock %}
+
+{% block content %}
+
+<h1 class="display-2 py-5">Delete Article</h1>
+<br/>
+
+{% if user.is_authenticated %}
+{% if user.id == post.author.id %}
+<div class="form-group">
+    <form method="POST">
+    {% csrf_token %}
+    <strong>Are you sure?</strong>
+    <button><a href="{% url 'article' post.pk %}" class="btn btn-outline-secondary">Back</a></button>
+    <button type="submit" class="btn btn-outline-danger">Delete</button>
+</div>
+{% else %}
+<h1>Error! Forbidden!</h1>
+{% endif %}
+
+{% else %}
+<h1>Error! Forbidden!</h1>
+{% endif %}
+
+<div class="py-3">
+    <a href="{% url 'Home' %}" class="btn btn-outline-secondary">Back</a>
+</div>
+{% endblock %}

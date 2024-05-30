@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+{% if category_posts %}
+
+<h1 class="display-2 py-5">{{ category }} </h1>
+
+<div class="container">
+    <div class="row justify-content-between py-2">
+    {% for post in category_posts %}
+    <div class="col-md-5 py-5">
+        <div class="card bg-dark border h-100">
+            <a href="{% url 'article' post.pk %}">
+            <img src="{{post.image.url}}" alt="{{post.image_alt}}" class="card-img-top">
+            <div class="card-body opacity-75-hover">               
+                <h5 class="card-title text-center">
+                    {{ post.title }} - {{ post.author}}</h5>
+                <h6 class="card-subtitle text-light text-end">{{ post.date|time:"G:i"}}, {{ post.date|date:"d/M/Y" }}</h6>
+                </div>
+            </a>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+</div>
+
+{% else %}
+    <h1>No Posts Yet</h1>
+{% endif %}
+
+<div>
+    <a href="{% url 'Home' %}" class="btn btn-outline-secondary">Back</a>
+</div>
+{% endblock %}

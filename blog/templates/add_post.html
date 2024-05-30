@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block title %}Add Article{% endblock %}
+
+{% block content %}
+<h1 class="display-2 py-5">Add Article</h1>
+<br/>
+
+{% for group in user.groups.all %}
+    {% if group.name == 'Writers' or group.name == 'Editors' %}
+        {% if user.is_authenticated %}
+        
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.media }}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-outline-primary">Post</button>
+        </form>
+
+        <script>
+            var name = "{{ user.id }}";
+            document.getElementById("authorField").value = name;
+        </script>
+
+        {% else %}
+        <h1>Error! Forbidden!</h1>
+        {% endif %}
+
+    {% else %}
+    <h1>Error! Forbidden!</h1>
+    {% endif %}
+
+{% endfor %}
+
+<div class="py-3">
+    <a href="{% url 'Home' %}" class="btn btn-outline-secondary">Back</a>
+</div>
+
+{% endblock  %}

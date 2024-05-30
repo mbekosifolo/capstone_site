@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1 class="display-2 py-5">Articles</h1>
+
+
+<div class="container">
+    <div class="row justify-content-between py-2">
+    {% if object_list %}
+    {% for post in object_list %}
+    <div class="col-md-5 py-5">
+        <div class="card bg-dark border h-100">
+            <a href="{% url 'article' post.pk %}">
+            <img src="{{post.image.url}}" alt="{{post.image_alt}}" class="card-img-top">
+            <div class="card-body opacity-75-hover">               
+                <h5 class="card-title text-center">
+                    {{ post.title }} - {{ post.author.first_name }} {{ post.author.last_name }}</h5>
+                <h6 class="card-subtitle text-light text-end">{{ post.date|time:"G:i"}}, {{ post.date|date:"d/M/Y" }}</h6>
+                </div>
+            </a>
+        </div>
+    </div>
+    {% endfor %}
+    </div>
+    {% else %}
+    <h1>No Posts Yet</h1>
+    {% endif %}
+    {% if user.is_authenticated %}
+        <form action="{% url 'users:logout' %}" method="POST">
+            {% csrf_token %}
+            <input type="submit" value="Log Out" class="btn btn-outline-warning btn-sm">
+        </form>
+
+    {% else %}
+        <div class="py-4">
+            <br/>
+            <a href="/users/login" class="btn btn-outline-primary">Log In</a>
+            <a href="/users/register_user" class="btn btn-outline-success">Sign Up</a>
+        </div> 
+    {% endif %}
+
+</div>       
+
+{% endblock content %}

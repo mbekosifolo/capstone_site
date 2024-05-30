@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1 class="display-2 py-5">Categories</h1>
+<br/>
+{% for category in category_list %}
+    
+    <a href="{% url 'category_page' category %}" class="link-light link-offset-3-hover"><h3>{{ category }}</h3></a>
+
+{% endfor %}
+
+{% for group in user.groups.all %}
+    {% if group.name == 'Editors' %}
+    <a href="{% url 'add_category' %}"><small>Add category</small></a>
+    {% endif %}
+{% endfor %}
+
+<div class="py-4">
+    <a href="{% url 'Home' %}" class="btn btn-outline-secondary">Back</a>
+</div>
+
+{% endblock %}

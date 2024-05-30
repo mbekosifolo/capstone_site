@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block title %}Add Category{% endblock %}
+
+
+{% block content %}
+<h1 class="display-2 py-5">Add Category</h1>
+<br/>
+
+{% if user.is_authenticated %}
+<form method="POST">
+    {% csrf_token %}
+
+    {{ form.media }}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-outline-primary">Add Category</button>
+
+</form>
+{% else %}
+<h1>Error! Forbidden!</h1>
+{% endif %}
+
+<div class="py-3">
+    <a href="{% url 'Home' %}" class="btn btn-outline-secondary">Back</a>
+</div>
+
+
+
+
+
+{% endblock  %}
