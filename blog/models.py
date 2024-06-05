@@ -6,6 +6,7 @@ from datetime import date, datetime
 
 
 class Category(models.Model):
+    """Stores category."""
     name = models.CharField(max_length=255, default='uncategorized')
 
     def __str__(self):
@@ -16,6 +17,7 @@ class Category(models.Model):
 
 
 class Post(models.Model):
+    """Stores an article"""
     title = models.CharField(max_length=140)
     body = QuillField(default='Content here')
     date = models.DateTimeField(auto_now=True)
@@ -36,6 +38,7 @@ class Post(models.Model):
 
 
 class Comment(models.Model):
+    """Creates a comment."""
     post = models.ForeignKey(Post, related_name='comments', on_delete=models.CASCADE)
     name = models.CharField(max_length=140)
     body = models.TextField()
