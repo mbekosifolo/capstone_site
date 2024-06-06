@@ -1,4 +1,9 @@
+<<<<<<< HEAD
 django
 python-dotenv
 django-quill-editor
 pillow
+=======
+virtualenv
+django
+>>>>>>> docs

@@ -7,12 +7,14 @@ from .forms import PostForm, EditForm, AddCommentForm
 from django.http import HttpResponse, HttpResponseRedirect
 
 class HomeView(ListView):
+    """Displays articles on homepage."""
     model = Post
     template_name = 'blog.html'
     ordering = ['-date']
 
 
 class PostDetailView(DetailView):
+    """Displays a an article in detail."""
     model = Post
     template_name = 'post.html'
 
@@ -33,12 +35,14 @@ class PostDetailView(DetailView):
         
 
 class AddPostView(CreateView):
+    """Displays form to post an article."""
     model = Post
     form_class = PostForm
     template_name = 'add_post.html'
 
 
 class AddCommentView(CreateView):
+    """Displays form to post a comment."""
     model = Comment
     form_class = AddCommentForm
     template_name = 'add_comment.html'
@@ -52,36 +56,43 @@ class AddCommentView(CreateView):
 
 
 class EditPostView(UpdateView):
+    """Displays form to edit an article."""
     model = Post
     form_class = EditForm
     template_name = 'edit_post.html'
 
 
 class DeletePostView(DeleteView):
+    """Deletes an article."""
     model = Post
     template_name = "delete_post.html"
     success_url = reverse_lazy('Home')
 
 
 class AddCategoryView(CreateView):
+    """Adds categories."""
     model = Category
     template_name = 'add_category.html'
     fields = '__all__'
 
 class EditCategoryView(UpdateView):
+    """Edits categories"""
     model = Category
     form_class = EditForm
     template_name = 'edit_post.html'
 
 def CategoryPageView(request, category):
+    """Displays articles under a category."""
     category_posts = Post.objects.filter(category=category)
     return render(request, 'categories.html', {'category': category, 'category_posts': category_posts})
 
 def CategoryListView(request):
+    """Displays list of categories."""
     category_list = Category.objects.all()
     return render(request, 'category_list.html', {'category_list': category_list})
 
 def LikeView(request, pk):
+    """Allows user to like and unlike post."""
     post = get_object_or_404(Post, id=request.POST.get('post_id'))
     if post.likes.filter(id=request.user.id).exists():
         post.likes.remove(request.user)
