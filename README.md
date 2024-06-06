@@ -7,6 +7,7 @@ A comicbook review blog website made with Django.
 
 ## Installation
 Django needs to be installed: pip install django
+For access to the Secret Key, contact me at mbeko007@gmail.com
 
 ## Usage
 Go to the root directory (the file "manage.py" is in it) then run "python manage.py runserver"
