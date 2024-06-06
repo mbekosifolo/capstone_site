@@ -1,0 +1,4 @@
+django
+python-dotenv
+django-quill-editor
+pillow
